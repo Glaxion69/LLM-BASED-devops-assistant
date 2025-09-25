@@ -1,0 +1,26 @@
+version: "3.9"
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile.api
+    environment:
+      - PORT=8000
+      - AUDIT_LOG_PATH=/data/audit.jsonl
+      - OPENAI_API_KEY
+      - ANTHROPIC_API_KEY
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./results:/data
+  slack:
+    build:
+      context: .
+      dockerfile: Dockerfile.slack
+    environment:
+      - SLACK_BOT_TOKEN
+      - SLACK_APP_TOKEN
+      - PORT=8000
+    depends_on:
+      - api
+
