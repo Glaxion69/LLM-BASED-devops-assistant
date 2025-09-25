@@ -3,6 +3,12 @@ from typing import List, Optional, Tuple
 import os
 import json
 from .models import IncidentEvent, Suggestion
+from .prompts import (
+    CLASSIFY_PROMPT_V1,
+    SUMMARIZE_PROMPT_V1,
+    CATEGORY_PROMPT_V1,
+    SUGGEST_PROMPT_V1,
+)
 
 # LangChain imports are optional at runtime; import lazily
 try:
